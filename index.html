@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Women’s Day</title>
+  <meta name="description" content="A beautiful, emotional, premium Women’s Day ." />
+  <style>
+    :root{
+      --bg-1:#fff8fb;
+      --bg-2:#fef4f8;
+      --bg-3:#f7eefc;
+      --rose:#d98aa5;
+      --rose-deep:#b86385;
+      --rose-gold:#d8a17a;
+      --lav:#b49ad7;
+      --lav-deep:#8f79b8;
+      --peach:#f6c7b8;
+      --cream:#fffaf1;
+      --white:rgba(255,255,255,0.72);
+      --text:#4b2f41;
+      --muted:#7a5c70;
+      --shadow: 0 20px 50px rgba(160, 94, 128, 0.18);
+      --shadow-soft: 0 10px 30px rgba(169, 103, 139, 0.12);
+      --border: rgba(255,255,255,0.55);
+      --glow: 0 0 30px rgba(216, 161, 122, 0.25);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 18px;
+      --max: 1200px;
+      --hero-h: 100svh;
+      --transition: 500ms cubic-bezier(.22,.61,.36,1);
+      --font-head: Georgia, "Times New Roman", serif;
+      --font-body: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+
+    *{box-sizing:border-box}
+    html{
+      scroll-behavior:smooth;
+    }
+    body{
+      margin:0;
+      font-family:var(--font-body);
+      color:var(--text);
+      background:
+        radial-gradient(circle at 10% 20%, rgba(244,197,215,0.45), transparent 28%),
+        radial-gradient(circle at 85% 10%, rgba(180,154,215,0.28), transparent 22%),
+        radial-gradient(circle at 80% 75%, rgba(246,199,184,0.35), transparent 25%),
+        linear-gradient(135deg, var(--bg-1), var(--bg-2) 40%, var(--bg-3));
+      overflow-x:hidden;
+    }
+
+    img{max-width:100%;display:block}
+    a{text-decoration:none;color:inherit}
+    button{font:inherit}
+
+    /* Intro Screen */
+    .intro{
+      position:fixed;
+      inset:0;
+      z-index:9999;
+      display:grid;
+      place-items:center;
+      background:
+        radial-gradient(circle at 30% 20%, rgba(255,255,255,0.4), transparent 25%),
+        radial-gradient(circle at 80% 70%, rgba(216,161,122,0.25), transparent 20%),
+        linear-gradient(135deg, #fdebf3, #f8effe 45%, #fff8f1);
+      transition:opacity 1s ease, visibility 1s ease;
+      overflow:hidden;
+    }
+    .intro.hide{
+      opacity:0;
+      visibility:hidden;
+      pointer-events:none;
+    }
+    .intro::before,
+    .intro::after{
+      content:"";
+      position:absolute;
+      width:45vmax;
+      height:45vmax;
+      border-radius:50%;
+      filter:blur(70px);
+      opacity:.35;
+      animation:floatBlob 10s ease-in-out infinite alternate;
+    }
+    .intro::before{
+      background:linear-gradient(135deg, rgba(217,138,165,.55), rgba(180,154,215,.25));
+      top:-10vmax; left:-10vmax;
+    }
+    .intro::after{
+      background:linear-gradient(135deg, rgba(246,199,184,.55), rgba(216,161,122,.25));
+      right:-12vmax; bottom:-10vmax;
+      animation-duration:12s;
+    }
+    .intro-card{
+      position:relative;
+      width:min(92vw, 800px);
+      padding:40px 28px;
+      border-radius:34px;
+      background:rgba(255,255,255,.18);
+      border:1px solid rgba(255,255,255,.45);
+      box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,.7);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      text-align:center;
+      transform-style:preserve-3d;
+      animation:introRise 1.4s cubic-bezier(.16,1,.3,1);
+    }
+    .intro-small{
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      color:var(--muted);
+      font-size:.82rem;
+      margin-bottom:12px;
+    }
+    .intro h1{
+      margin:0;
+      font-family:var(--font-head);
+      font-size:clamp(2.1rem, 6vw, 4.7rem);
+      line-height:1.06;
+      color:#6c425a;
+      text-shadow:0 8px 28px rgba(216,161,122,.18);
+    }
+    .intro h1 span{
+      background:linear-gradient(135deg, var(--rose-deep), var(--lav-deep), var(--rose-gold));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+    .intro p{
+      max-width:650px;
+      margin:18px auto 0;
+      color:var(--muted);
+      font-size:1rem;
+      line-height:1.7;
+    }
+
+    /* Floating particles / hearts / petals */
+    .fx-layer{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:2;
+      overflow:hidden;
+    }
+    .floaty{
+      position:absolute;
+      bottom:-60px;
+      opacity:.65;
+      animation:rise linear forwards;
+      filter:drop-shadow(0 8px 16px rgba(217,138,165,.18));
+    }
+    .floaty.heart{
+      width:18px;height:18px;
+      transform:rotate(-45deg);
+      background:linear-gradient(135deg, rgba(217,138,165,.95), rgba(246,199,184,.92));
+      border-radius:4px 4px 2px 2px;
+    }
+    .floaty.heart::before,
+    .floaty.heart::after{
+      content:"";
+      position:absolute;
+      width:18px;height:18px;
+      background:inherit;
+      border-radius:50%;
+    }
+    .floaty.heart::before{top:-9px;left:0}
+    .floaty.heart::after{left:9px;top:0}
+    .floaty.petal{
+      width:16px;height:24px;
+      background:linear-gradient(180deg, rgba(255,255,255,.95), rgba(244,197,215,.85));
+      border-radius:70% 30% 70% 30% / 70% 30% 70% 30%;
+      transform:rotate(12deg);
+    }
+    .floaty.sparkle{
+      width:8px;height:8px;border-radius:50%;
+      background:radial-gradient(circle, rgba(255,255,255,1), rgba(255,255,255,.2));
+      box-shadow:0 0 12px rgba(255,255,255,.9), 0 0 30px rgba(216,161,122,.4);
+    }
+
+    /* Main */
+    .site{
+      position:relative;
+      z-index:1;
+    }
+
+    .nav{
+      position:sticky;
+      top:0;
+      z-index:20;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background:rgba(255,255,255,0.26);
+      border-bottom:1px solid rgba(255,255,255,.35);
+    }
+    .nav-inner{
+      max-width:var(--max);
+      margin:auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:14px 20px;
+      gap:12px;
+    }
+    .brand{
+      font-family:var(--font-head);
+      font-size:1.15rem;
+      font-weight:700;
+      letter-spacing:.03em;
+      color:#71485f;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .brand-badge{
+      width:34px;height:34px;
+      border-radius:50%;
+      display:grid;place-items:center;
+      background:linear-gradient(135deg, rgba(217,138,165,.26), rgba(180,154,215,.26));
+      box-shadow: var(--shadow-soft);
+      border:1px solid rgba(255,255,255,.6);
+    }
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .nav-links a, .icon-btn{
+      padding:10px 14px;
+      border-radius:999px;
+      color:var(--muted);
+      transition:transform var(--transition), background var(--transition), color var(--transition), box-shadow var(--transition);
+      border:1px solid rgba(255,255,255,.35);
+      background:rgba(255,255,255,.32);
+      box-shadow: var(--shadow-soft);
+    }
+    .nav-links a:hover, .icon-btn:hover{
+      transform:translateY(-2px);
+      color:var(--rose-deep);
+      background:rgba(255,255,255,.65);
+    }
+
+    .container{
+      max-width:var(--max);
+      margin:auto;
+      padding:0 20px;
+      position:relative;
+    }
+    .section{
+      padding:90px 0;
+      position:relative;
+    }
+    .section-title{
+      font-family:var(--font-head);
+      font-size:clamp(2rem, 4vw, 3.5rem);
+      line-height:1.1;
+      margin:0 0 14px;
+      color:#5c374d;
+    }
+    .section-sub{
+      font-size:1.05rem;
+      line-height:1.8;
+      color:var(--muted);
+      max-width:760px;
+      margin:0 auto;
+    }
+
+    /* Hero */
+    .hero{
+      min-height:var(--hero-h);
+      display:grid;
+      align-items:center;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      align-items:center;
+      gap:32px;
+      min-height:calc(var(--hero-h) - 70px);
+      padding:40px 0 70px;
+    }
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 16px;
+      border-radius:999px;
+      background:rgba(255,255,255,.45);
+      border:1px solid rgba(255,255,255,.65);
+      box-shadow:var(--shadow-soft);
+      color:#7a5168;
+      margin-bottom:18px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .hero h2{
+      font-family:var(--font-head);
+      font-size:clamp(2.7rem, 7vw, 5.6rem);
+      line-height:.98;
+      margin:0;
+      color:#60384f;
+      letter-spacing:-.03em;
+      text-shadow:0 10px 30px rgba(255,255,255,.25);
+    }
+    .hero h2 .shine{
+      background:linear-gradient(135deg, #7d4c65 0%, #c67f9f 36%, #b58bd7 70%, #d9a27a 100%);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      background-size:200% 200%;
+      animation:gradientShift 6s ease infinite;
+    }
+    .hero p{
+      font-size:1.08rem;
+      line-height:1.85;
+      color:var(--muted);
+      max-width:670px;
+      margin:22px 0 0;
+    }
+    .cta-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-top:30px;
+    }
+    .btn{
+      position:relative;
+      overflow:hidden;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:15px 24px;
+      border-radius:999px;
+      border:none;
+      cursor:pointer;
+      transition:transform var(--transition), box-shadow var(--transition), filter var(--transition);
+      box-shadow:var(--shadow);
+    }
+    .btn:hover{
+      transform:translateY(-4px) scale(1.01);
+      filter:saturate(1.05);
+    }
+    .btn-primary{
+      color:white;
+      background:
+        linear-gradient(135deg, rgba(199,117,151,1), rgba(180,154,215,1), rgba(216,161,122,1));
+      background-size:200% 200%;
+      animation:gradientShift 7s ease infinite;
+      box-shadow: 0 18px 40px rgba(184, 108, 145, 0.28), 0 0 24px rgba(216,161,122,.18);
+    }
+    .btn-primary::after{
+      content:"";
+      position:absolute;
+      inset:-40%;
+      background:linear-gradient(90deg, transparent, rgba(255,255,255,.42), transparent);
+      transform:translateX(-120%) rotate(18deg);
+      animation:glint 3.4s infinite;
+    }
+    .btn-secondary{
+      background:rgba(255,255,255,.5);
+      color:#734b61;
+      border:1px solid rgba(255,255,255,.75);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .hero-visual{
+      position:relative;
+      perspective:1200px;
+      min-height:580px;
+      display:grid;
+      place-items:center;
+    }
+    .orb{
+      position:absolute;
+      border-radius:50%;
+      filter:blur(20px);
+      opacity:.6;
+      animation:floatY 7s ease-in-out infinite;
+    }
+    .orb.one{
+      width:160px;height:160px;
+      background:rgba(217,138,165,.28);
+      top:12%; left:2%;
+    }
+    .orb.two{
+      width:210px;height:210px;
+      background:rgba(180,154,215,.22);
+      right:8%; top:18%;
+      animation-delay:-1s;
+    }
+    .orb.three{
+      width:140px;height:140px;
+      background:rgba(246,199,184,.28);
+      bottom:6%; left:14%;
+      animation-delay:-2s;
+    }
+
+    .portrait-wrap{
+      position:relative;
+      width:min(440px, 90vw);
+      aspect-ratio: 4 / 5.2;
+      transform-style:preserve-3d;
+      animation:floatCard 6s ease-in-out infinite;
+    }
+    .backplate,
+    .ring,
+    .portrait-card,
+    .quote-chip{
+      position:absolute;
+      inset:0;
+      border-radius:32px;
+    }
+    .backplate{
+      transform:translateZ(-60px) rotate(-8deg);
+      background:linear-gradient(135deg, rgba(255,255,255,.3), rgba(255,255,255,.08));
+      border:1px solid rgba(255,255,255,.45);
+      box-shadow:var(--shadow);
+    }
+    .ring{
+      inset:8%;
+      transform:translateZ(-25px) rotate(7deg);
+      border:1px solid rgba(255,255,255,.55);
+      background:linear-gradient(135deg, rgba(217,138,165,.12), rgba(180,154,215,.08));
+      filter:blur(.2px);
+    }
+    .portrait-card{
+      overflow:hidden;
+      background:
+        linear-gradient(to top, rgba(86,44,65,.2), rgba(86,44,65,.05)),
+        url('./VIP.jpg') center/cover no-repeat;
+      box-shadow:var(--shadow), inset 0 1px 0 rgba(255,255,255,.4);
+      border:1px solid rgba(255,255,255,.55);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transform:translateZ(0);
+      transition:transform var(--transition);
+    }
+    .portrait-glow{
+      position:absolute;
+      inset:auto 10% -4% 10%;
+      height:80px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(216,161,122,.32), rgba(180,154,215,.16), transparent 72%);
+      filter:blur(20px);
+      z-index:-1;
+    }
+    .quote-chip{
+      inset:auto auto 6% -10%;
+      width:240px;
+      height:auto;
+      padding:16px 18px;
+      background:rgba(255,255,255,.55);
+      border:1px solid rgba(255,255,255,.75);
+      box-shadow:var(--shadow-soft);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      transform:translateZ(55px);
+    }
+    .quote-chip strong{
+      display:block;
+      font-size:1rem;
+      color:#6a455b;
+      margin-bottom:6px;
+    }
+    .quote-chip span{
+      color:var(--muted);
+      font-size:.95rem;
+      line-height:1.6;
+    }
+    .mini-badge{
+      position:absolute;
+      top:8%;
+      right:-8%;
+      width:120px;
+      height:120px;
+      border-radius:24px;
+      display:grid;
+      place-items:center;
+      padding:15px;
+      text-align:center;
+      background:rgba(255,255,255,.45);
+      border:1px solid rgba(255,255,255,.8);
+      box-shadow:var(--shadow);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      transform:translateZ(60px) rotate(8deg);
+      color:#7b5068;
+      font-weight:700;
+      line-height:1.25;
+    }
+
+    /* Glass Panels */
+    .glass{
+      background:rgba(255,255,255,.45);
+      border:1px solid rgba(255,255,255,.65);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-radius:var(--radius-xl);
+      position:relative;
+      overflow:hidden;
+    }
+    .glass::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      padding:1px;
+      border-radius:inherit;
+      background:linear-gradient(135deg, rgba(255,255,255,.85), rgba(255,255,255,.14), rgba(216,161,122,.35));
+      -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+      mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+      -webkit-mask-composite:xor;
+              mask-composite:exclude;
+      pointer-events:none;
+      opacity:.8;
+    }
+
+    /* Heart Touching */
+    .story-box{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:24px;
+      align-items:stretch;
+    }
+    .story-copy{
+      padding:34px;
+    }
+    .story-copy p{
+      margin:0 0 16px;
+      color:var(--muted);
+      line-height:1.95;
+      font-size:1.02rem;
+    }
+    .story-copy p strong{
+      color:#6c425a;
+      font-weight:700;
+    }
+    .story-side{
+      padding:24px;
+      display:grid;
+      gap:16px;
+      align-content:center;
+    }
+    .mini-card{
+      padding:18px 18px;
+      border-radius:20px;
+      background:rgba(255,255,255,.55);
+      border:1px solid rgba(255,255,255,.7);
+      box-shadow:var(--shadow-soft);
+      transform-style:preserve-3d;
+      transition:transform var(--transition), box-shadow var(--transition);
+    }
+    .mini-card:hover{
+      transform:translateY(-6px) rotateX(4deg) rotateY(-4deg);
+      box-shadow:0 18px 35px rgba(160,94,128,.15);
+    }
+    .mini-card strong{
+      display:block;
+      margin-bottom:6px;
+      color:#6c4359;
+      font-size:1rem;
+    }
+    .mini-card span{
+      color:var(--muted);
+      line-height:1.6;
+      font-size:.95rem;
+    }
+
+    /* Women Cards */
+    .cards-head{
+      text-align:center;
+      margin-bottom:30px;
+    }
+    .women-grid{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:22px;
+    }
+    .woman-card{
+      position:relative;
+      transform-style:preserve-3d;
+      perspective:1200px;
+      min-height:420px;
+      border-radius:28px;
+      transition:transform var(--transition);
+    }
+    .woman-inner{
+      position:relative;
+      height:100%;
+      overflow:hidden;
+      border-radius:28px;
+      background:rgba(255,255,255,.45);
+      border:1px solid rgba(255,255,255,.7);
+      box-shadow:var(--shadow);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      transform-style:preserve-3d;
+      transition:transform var(--transition), box-shadow var(--transition);
+    }
+    .woman-card:hover .woman-inner{
+      transform:rotateX(5deg) rotateY(-6deg) translateY(-8px);
+      box-shadow:0 28px 60px rgba(153,92,123,.22);
+    }
+    .card-media{
+      position:relative;
+      height:250px;
+      overflow:hidden;
+    }
+    .card-media img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transition:transform 1s ease;
+    }
+    .woman-card:hover .card-media img{
+      transform:scale(1.07);
+    }
+    .card-media::after{
+      content:"";
+      position:absolute;
+      inset:auto 0 0 0;
+      height:50%;
+      background:linear-gradient(to top, rgba(74,42,60,.28), transparent);
+      pointer-events:none;
+    }
+    .card-content{
+      padding:22px 20px 24px;
+      position:relative;
+      z-index:1;
+    }
+    .card-content h3{
+      margin:0 0 8px;
+      font-family:var(--font-head);
+      font-size:1.6rem;
+      color:#633b52;
+    }
+    .card-content p{
+      margin:0 0 14px;
+      line-height:1.75;
+      color:var(--muted);
+    }
+    .tag{
+      display:inline-flex;
+      padding:8px 12px;
+      border-radius:999px;
+      background:linear-gradient(135deg, rgba(217,138,165,.12), rgba(180,154,215,.14));
+      border:1px solid rgba(255,255,255,.65);
+      color:#7a5168;
+      font-size:.86rem;
+      font-weight:600;
+      box-shadow:var(--shadow-soft);
+    }
+
+    /* Tribute */
+    .tribute{
+      text-align:center;
+    }
+    .tribute-box{
+      padding:50px 28px;
+      max-width:920px;
+      margin:0 auto;
+    }
+    .tribute-box p{
+      margin:0 auto;
+      max-width:780px;
+      color:var(--muted);
+      line-height:2;
+      font-size:1.07rem;
+    }
+
+    /* Quote */
+    .quote-section{
+      text-align:center;
+    }
+    .quote-panel{
+      padding:56px 28px;
+      max-width:980px;
+      margin:0 auto;
+      position:relative;
+      overflow:hidden;
+    }
+    .quote-mark{
+      font-size:6rem;
+      line-height:.7;
+      color:rgba(184,108,145,.18);
+      font-family:var(--font-head);
+      position:absolute;
+      top:16px;
+      left:26px;
+    }
+    .featured-quote{
+      font-family:var(--font-head);
+      font-size:clamp(1.8rem, 4vw, 3.3rem);
+      line-height:1.35;
+      margin:0;
+      color:#5f384d;
+      position:relative;
+      z-index:1;
+    }
+
+    /* Final */
+    .final{
+      padding-top:70px;
+      padding-bottom:110px;
+      text-align:center;
+    }
+    .final-box{
+      padding:54px 28px;
+      max-width:920px;
+      margin:0 auto;
+    }
+    .final h3{
+      font-family:var(--font-head);
+      font-size:clamp(2.1rem, 5vw, 4rem);
+      margin:0 0 10px;
+      color:#613951;
+    }
+    .final p{
+      margin:0 auto 16px;
+      max-width:700px;
+      color:var(--muted);
+      line-height:1.9;
+      font-size:1.04rem;
+    }
+    .personal-line{
+      margin-top:18px;
+      font-weight:700;
+      color:#7f5067;
+      font-size:1.05rem;
+    }
+
+    footer{
+      padding:18px 20px 40px;
+      text-align:center;
+      color:#8b6b7c;
+      font-size:.95rem;
+    }
+
+    /* Reveal on scroll */
+    .reveal{
+      opacity:0;
+      transform:translateY(26px) scale(.985);
+      transition:opacity .9s ease, transform .9s ease;
+    }
+    .reveal.in{
+      opacity:1;
+      transform:none;
+    }
+
+    /* Floating decorative blobs */
+    .decor{
+      position:absolute;
+      pointer-events:none;
+      z-index:0;
+      filter:blur(10px);
+      opacity:.45;
+    }
+    .decor.a{
+      width:220px;height:220px;border-radius:50%;
+      background:rgba(246,199,184,.22);
+      left:-70px; top:60px;
+    }
+    .decor.b{
+      width:180px;height:180px;border-radius:50%;
+      background:rgba(180,154,215,.18);
+      right:-60px; bottom:30px;
+    }
+
+    /* Mobile */
+    @media (max-width: 1050px){
+      .hero-grid,
+      .story-box{
+        grid-template-columns:1fr;
+      }
+      .hero-visual{
+        min-height:460px;
+        order:-1;
+      }
+      .women-grid{
+        grid-template-columns:repeat(2, 1fr);
+      }
+      .quote-chip{
+        left:2%;
+      }
+      .mini-badge{
+        right:0;
+      }
+    }
+
+    @media (max-width: 720px){
+      .nav-inner{
+        padding:12px 14px;
+      }
+      .nav-links{
+        gap:8px;
+        justify-content:flex-end;
+      }
+      .nav-links a{
+        display:none;
+      }
+      .section{
+        padding:72px 0;
+      }
+      .hero-grid{
+        gap:20px;
+        padding-top:28px;
+      }
+      .hero p{
+        font-size:1rem;
+      }
+      .portrait-wrap{
+        width:min(360px, 92vw);
+      }
+      .mini-badge{
+        width:98px;height:98px;font-size:.82rem;
+      }
+      .quote-chip{
+        width:210px;
+        font-size:.92rem;
+      }
+      .story-copy,
+      .story-side,
+      .tribute-box,
+      .quote-panel,
+      .final-box{
+        padding:28px 18px;
+      }
+      .women-grid{
+        grid-template-columns:1fr;
+      }
+      .woman-card{
+        min-height:390px;
+      }
+      .featured-quote{
+        line-height:1.45;
+      }
+      .intro-card{
+        padding:32px 18px;
+      }
+      .cta-row{
+        gap:12px;
+      }
+      .btn{
+        width:100%;
+      }
+    }
+
+    /* Animations */
+    @keyframes gradientShift{
+      0%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0% 50%}
+    }
+    @keyframes glint{
+      0%, 100%{transform:translateX(-140%) rotate(18deg)}
+      55%{transform:translateX(160%) rotate(18deg)}
+    }
+    @keyframes floatBlob{
+      from{transform:translate3d(0,0,0) scale(1)}
+      to{transform:translate3d(25px,20px,0) scale(1.06)}
+    }
+    @keyframes introRise{
+      from{opacity:0; transform:translateY(30px) scale(.96)}
+      to{opacity:1; transform:none}
+    }
+    @keyframes floatY{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-18px)}
+    }
+    @keyframes floatCard{
+      0%,100%{transform:rotateX(2deg) rotateY(-4deg) translateY(0)}
+      50%{transform:rotateX(-1deg) rotateY(3deg) translateY(-10px)}
+    }
+    @keyframes rise{
+      from{
+        transform:translate3d(0,0,0) rotate(0deg);
+        opacity:0;
+      }
+      12%{opacity:.7}
+      to{
+        transform:translate3d(var(--drift, 0), -110vh, 0) rotate(var(--spin, 180deg));
+        opacity:0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 3-Second Intro -->
+  <div class="intro" id="intro">
+    <div class="intro-card">
+      <div class="intro-small">A Special </div>
+      <h1>Happy Women’s Day, <span id="introName">[VAGEESHA]</span></h1>
+      <p>
+        A celebration of strength, grace, courage, kindness, and the quiet power that transforms lives every day.
+      </p>
+    </div>
+  </div>
+
+  <!-- Floating FX -->
+  <div class="fx-layer" id="fxLayer" aria-hidden="true"></div>
+
+  <!-- Optional music -->
+  <audio id="bgMusic" loop preload="none"></audio>
+
+  <main class="site">
+    <nav class="nav">
+      <div class="nav-inner">
+        <div class="brand">
+          <div class="brand-badge">❤</div>
+          <span>Women’s Day </span>
+        </div>
+        <div class="nav-links">
+          <a href="#hero">Home</a>
+          <a href="#message">Message</a>
+          <a href="#women">Inspiration</a>
+          <a href="#tribute">Tribute</a>
+          <button class="icon-btn" id="musicBtn" aria-label="Toggle background music">♫</button>
+        </div>
+      </div>
+    </nav>
+
+    <section class="hero container" id="hero">
+      <div class="decor a"></div>
+      <div class="decor b"></div>
+
+      <div class="hero-grid">
+        <div class="reveal in">
+          <div class="eyebrow">Celebrating every woman who inspires the world</div>
+          <h2>
+            <span class="shine">Strength.</span><br />
+            Grace. Love.<br />
+            Courage.
+          </h2>
+          <p>
+            Today we honor every woman who inspires the world with her resilience, kindness, and endless power.
+            This is more than a celebration — it is a heartfelt tribute to every dream carried in silence,
+            every burden lifted with love, and every light shared with the world.
+          </p>
+
+          <div class="cta-row">
+            <a href="#tribute" class="btn btn-primary">Celebrate Her</a>
+            <a href="#women" class="btn btn-secondary">Explore Tribute</a>
+            <a href="#final" class="btn btn-secondary">For Every Woman</a>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal in" id="parallaxWrap">
+          <div class="orb one"></div>
+          <div class="orb two"></div>
+          <div class="orb three"></div>
+
+          <div class="portrait-wrap" id="tiltHero">
+            <div class="backplate"></div>
+            <div class="ring"></div>
+            <div class="portrait-card"></div>
+            <div class="quote-chip">
+              <strong>She is beauty and bravery together.</strong>
+              <span>Softness in heart. Strength in soul. Light in every step.</span>
+            </div>
+            <div class="mini-badge">For every woman who rises, even after the storm.</div>
+            <div class="portrait-glow"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section container" id="message">
+      <div class="story-box">
+        <div class="glass story-copy reveal">
+          <h3 class="section-title">A Heart-Touching Tribute</h3>
+          <p><strong>A woman is not just a part of the story — she is the strength behind it.</strong></p>
+          <p>
+            She nurtures, she leads, she dreams, she sacrifices, she rises.
+            Behind every strong family, every hopeful child, every caring home,
+            and every brighter tomorrow, there is a woman who made it possible.
+          </p>
+          <p>
+            This Women’s Day, we celebrate not just beauty, but bravery.
+            Not just presence, but power. Not just tenderness, but a spirit
+            so strong that it keeps the world moving even on its hardest days.
+          </p>
+          <p>
+            Her love heals. Her courage inspires. Her voice changes generations.
+            Her strength may be quiet, but its impact is immeasurable.
+          </p>
+        </div>
+
+        <div class="story-side reveal">
+          <div class="mini-card">
+            <strong>She nurtures with love</strong>
+            <span>Even in moments of exhaustion, she still finds a way to care, to hold, and to uplift.</span>
+          </div>
+          <div class="mini-card">
+            <strong>She stands with courage</strong>
+            <span>Even when life becomes heavy, she carries hope forward with remarkable grace.</span>
+          </div>
+          <div class="mini-card">
+            <strong>She becomes the light</strong>
+            <span>In homes, in classrooms, in workplaces, and in dreams — she brightens every space she enters.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section container" id="women">
+      <div class="cards-head reveal">
+        <h3 class="section-title">Inspirational Women</h3>
+        <p class="section-sub">
+          Every woman carries her own universe of strength, sacrifice, dreams, and grace.
+          Here are a few beautiful reflections of that spirit.
+        </p>
+      </div>
+
+      <div class="women-grid">
+        <article class="woman-card reveal tilt-card">
+          <div class="woman-inner">
+            <div class="card-media">
+              <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=900&q=80" alt="The Mother" />
+            </div>
+            <div class="card-content">
+              <span class="tag">The Mother</span>
+              <h3>The Mother</h3>
+              <p>She gives without asking. Her love becomes the first safe place the world ever knows.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="woman-card reveal tilt-card">
+          <div class="woman-inner">
+            <div class="card-media">
+              <img src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=900&q=80" alt="The Dreamer" />
+            </div>
+            <div class="card-content">
+              <span class="tag">The Dreamer</span>
+              <h3>The Dreamer</h3>
+              <p>She imagines more than the world offers and dares to build a future from her vision.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="woman-card reveal tilt-card">
+          <div class="woman-inner">
+            <div class="card-media">
+              <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=900&q=80" alt="The Leader" />
+            </div>
+            <div class="card-content">
+              <span class="tag">The Leader</span>
+              <h3>The Leader</h3>
+              <p>She rises with purpose, lifts others with her, and leaves behind courage wherever she walks.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="woman-card reveal tilt-card">
+          <div class="woman-inner">
+            <div class="card-media">
+              <img src="https://images.unsplash.com/photo-1520813792240-56fc4a3765a7?auto=format&fit=crop&w=900&q=80" alt="The Fighter" />
+            </div>
+            <div class="card-content">
+              <span class="tag">The Fighter</span>
+              <h3>The Fighter</h3>
+              <p>She stands even when life tries to break her. She turns pain into power.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="woman-card reveal tilt-card">
+          <div class="woman-inner">
+            <div class="card-media">
+              <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80" alt="The Creator" />
+            </div>
+            <div class="card-content">
+              <span class="tag">The Creator</span>
+              <h3>The Creator</h3>
+              <p>She shapes beauty, ideas, and meaning. Her imagination becomes something the world can feel.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="woman-card reveal tilt-card">
+          <div class="woman-inner">
+            <div class="card-media">
+              <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=900&q=80" alt="The Teacher" />
+            </div>
+            <div class="card-content">
+              <span class="tag">The Teacher</span>
+              <h3>The Teacher</h3>
+              <p>She plants confidence, wisdom, and hope in hearts that may one day change the world.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section container tribute" id="tribute">
+      <div class="glass tribute-box reveal">
+        <h3 class="section-title">To Every Woman</h3>
+        <p>
+          To every mother, sister, daughter, friend, teacher, dreamer, and warrior — thank you.
+          Your presence makes the world more compassionate, more beautiful, and more alive.
+          Today is your day, but your worth is timeless. Your strength is not measured only by
+          what you endure, but by the love, courage, and hope you continue to give.
+        </p>
+      </div>
+    </section>
+
+    <section class="section container quote-section" id="quote">
+      <div class="glass quote-panel reveal">
+        <div class="quote-mark">“</div>
+        <p class="featured-quote">
+          A woman carries strength in silence, love in action, and courage in every step.
+        </p>
+      </div>
+    </section>
+
+    <section class="section container final" id="final">
+      <div class="glass final-box reveal">
+        <h3>Happy Women’s Day</h3>
+        <p>
+          You are valued. You are powerful. You are inspiring.
+          May your heart always know its worth, and may your journey always be filled
+          with respect, love, and the celebration you truly deserve.
+        </p>
+        <p class="personal-line">With love and respect, this tribute is for you, <span id="finalName">VAGEESHA</span>.</p>
+
+        <div class="cta-row" style="justify-content:center; margin-top:28px;">
+          <a href="#hero" class="btn btn-primary">Celebrate Again</a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      Made with admiration, respect, and heartfelt appreciation for every woman.
+    </footer>
+  </main>
+
+  <script>
+    /* ============================
+       EASY NAME CUSTOMIZATION
+       ----------------------------
+       Option 1: Change defaultName below.
+       Option 2: Use URL like: index.html?name=Ishu
+    ============================ */
+    const defaultName = "VAGEESHA";
+
+    /* Optional music:
+       Put your audio file URL below if you want background music.
+       Example:
+       const backgroundMusicURL = "music.mp3";
+    */
+    const backgroundMusicURL = "";
+
+    const introName = document.getElementById("introName");
+    const finalName = document.getElementById("finalName");
+    const intro = document.getElementById("intro");
+    const fxLayer = document.getElementById("fxLayer");
+    const musicBtn = document.getElementById("musicBtn");
+    const bgMusic = document.getElementById("bgMusic");
+
+    function getNameFromURL() {
+      const params = new URLSearchParams(window.location.search);
+      const raw = params.get("name");
+      return raw ? decodeURIComponent(raw).trim() : "";
+    }
+
+    function sanitizeName(name){
+      return name.replace(/[<>]/g, "VAGEESHA").slice(0, 40) || defaultName;
+    }
+
+    const personName = sanitizeName(getNameFromURL() || defaultName);
+    introName.textContent = personName;
+    finalName.textContent = personName;
+
+    // 3-second intro
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        intro.classList.add("hide");
+      }, 3000);
+    });
+
+    // Floating hearts / petals / sparkles
+    const fxTypes = ["heart", "petal", "sparkle"];
+    function createFloaty() {
+      const el = document.createElement("span");
+      const type = fxTypes[Math.floor(Math.random() * fxTypes.length)];
+      el.className = `floaty ${type}`;
+
+      const left = Math.random() * 100;
+      const duration = 10 + Math.random() * 12;
+      const delay = Math.random() * 2;
+      const drift = (Math.random() * 120 - 60).toFixed(0) + "px";
+      const spin = (Math.random() * 360 - 180).toFixed(0) + "deg";
+      const scale = (0.7 + Math.random() * 1.2).toFixed(2);
+
+      el.style.left = left + "vw";
+      el.style.animationDuration = duration + "s";
+      el.style.animationDelay = delay + "s";
+      el.style.setProperty("--drift", drift);
+      el.style.setProperty("--spin", spin);
+      el.style.transform += ` scale(${scale})`;
+
+      fxLayer.appendChild(el);
+
+      setTimeout(() => el.remove(), (duration + delay) * 1000);
+    }
+
+    for(let i = 0; i < 28; i++) {
+      setTimeout(createFloaty, i * 320);
+    }
+    setInterval(createFloaty, 700);
+
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add("in");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll(".reveal").forEach(el => {
+      if(!el.classList.contains("in")) observer.observe(el);
+    });
+
+    // Subtle tilt effect for cards
+    function addTilt(selector) {
+      document.querySelectorAll(selector).forEach(card => {
+        card.addEventListener("mousemove", (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+
+          const rotateY = ((x - centerX) / centerX) * 6;
+          const rotateX = -((y - centerY) / centerY) * 6;
+
+          const inner = card.querySelector(".woman-inner") || card;
+          inner.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
+        });
+
+        card.addEventListener("mouseleave", () => {
+          const inner = card.querySelector(".woman-inner") || card;
+          inner.style.transform = "";
+        });
+      });
+    }
+    addTilt(".tilt-card");
+
+    // Hero tilt
+    const heroTilt = document.getElementById("tiltHero");
+    heroTilt.addEventListener("mousemove", (e) => {
+      const rect = heroTilt.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const rx = -((y / rect.height) - 0.5) * 10;
+      const ry = ((x / rect.width) - 0.5) * 12;
+      heroTilt.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+    });
+    heroTilt.addEventListener("mouseleave", () => {
+      heroTilt.style.transform = "";
+    });
+
+    // Parallax on hero
+    const parallaxWrap = document.getElementById("parallaxWrap");
+    window.addEventListener("scroll", () => {
+      const y = window.scrollY;
+      parallaxWrap.style.transform = `translateY(${y * 0.04}px)`;
+    });
+
+    // Optional music button
+    let isPlaying = false;
+    if (backgroundMusicURL) {
+      bgMusic.src = backgroundMusicURL;
+    }
+
+    musicBtn.addEventListener("click", async () => {
+      if (!backgroundMusicURL) {
+        alert("Add your music file URL inside the script: const backgroundMusicURL = 'your-file.mp3';");
+        return;
+      }
+
+      try {
+        if (isPlaying) {
+          bgMusic.pause();
+          isPlaying = false;
+          musicBtn.textContent = "♫";
+        } else {
+          await bgMusic.play();
+          isPlaying = true;
+          musicBtn.textContent = "❚❚";
+        }
+      } catch (e) {
+        alert("Music could not start. Tap again after the page fully loads.");
+      }
+    });
+  </script>
+</body>
+</html>
